@@ -4,8 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.io.InputStream;
-import java.sql.Blob;
+import java.util.Date;
 
 @Entity(tableName = "Record")
 public class Record {
@@ -16,16 +15,18 @@ public class Record {
     private String note;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
+    private Date noteDate;
 
     public Record() {
     }
 
-    public Record(int id, String emotion, String weather, String note, byte[] image) {
+    public Record(int id, String emotion, String weather, String note, byte[] image, Date noteDate) {
         this.id = id;
         this.emotion = emotion;
         this.weather = weather;
         this.note = note;
         this.image = image;
+        this.noteDate = noteDate;
     }
 
     public int getId() {
@@ -68,4 +69,11 @@ public class Record {
         this.image = image;
     }
 
+    public Date getNoteDate() {
+        return noteDate;
+    }
+
+    public void setNoteDate(Date noteDate) {
+        this.noteDate = noteDate;
+    }
 }

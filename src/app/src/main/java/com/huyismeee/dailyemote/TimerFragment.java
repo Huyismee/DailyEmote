@@ -1,9 +1,11 @@
 package com.huyismeee.dailyemote;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
@@ -17,17 +19,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.huyismeee.dailyemote.database.RecordDatabase;
 import com.huyismeee.dailyemote.database.TaskTimer;
 import com.huyismeee.dailyemote.database.TaskTimerDao;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Locale;
 
 
 public class TimerFragment extends Fragment {
 
     private EditText editTextTime, editTextTaskName, editTextTaskTime;
-    private Button buttonStart, buttonPause, buttonReset, buttonAddTask;
+    private Button buttonStart, buttonPause, buttonReset, buttonAddTask, buttonContinue;
     private Spinner taskSpinner;
     private TextView textViewTimer;
     private ArrayList<TaskTimer> taskList;
@@ -35,12 +39,14 @@ public class TimerFragment extends Fragment {
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
     private boolean timerRunning;
+    View buttonDeleteTask;
 
     private void bindingView(View v){
         editTextTime = v.findViewById(R.id.editTextTime);
         buttonStart = v.findViewById(R.id.buttonStart);
         buttonPause = v.findViewById(R.id.buttonPause);
         buttonReset = v.findViewById(R.id.buttonReset);
+        buttonContinue = v.findViewById(R.id.buttonContinue);
         editTextTaskName = v.findViewById(R.id.editTextTaskName);
         editTextTaskTime = v.findViewById(R.id.editTextTaskTime);
         buttonAddTask = v.findViewById(R.id.buttonAddTask);
@@ -49,14 +55,26 @@ public class TimerFragment extends Fragment {
         taskList = new ArrayList<>();
         taskAdapter = new TaskSpinnerAdapter(getContext(), taskList);
         taskSpinner.setAdapter(taskAdapter);
+        textViewTimer = v.findViewById(R.id.textViewTimer);
+        buttonDeleteTask = v.findViewById(R.id.buttonDeleteTask);
     }
 
     private void bindingAction(View v){
+        buttonDeleteTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteTask();
+            }
+        });
         taskSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 TaskTimer selectedTask = (TaskTimer) parent.getItemAtPosition(position);
                 editTextTime.setText(String.valueOf(selectedTask.getDuration()));
+                TextView selectedText = (TextView) parent.getChildAt(0);
+                if (selectedText != null) {
+                    selectedText.setTextColor(ContextCompat.getColor(getContext(), R.color.colorText));
+                }
             }
 
             @Override
@@ -95,6 +113,12 @@ public class TimerFragment extends Fragment {
                 pauseTimer();
             }
         });
+        buttonContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                continueTimer();
+            }
+        });
     }
 
     @Override
@@ -109,6 +133,7 @@ public class TimerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         bindingView(view);
         bindingAction(view);
+        loadTasksFromDatabase();
 
     }
     private void startTimer() {
@@ -156,7 +181,7 @@ public class TimerFragment extends Fragment {
         timerRunning = true;
         buttonStart.setText("Pause");
         buttonReset.setVisibility(View.GONE);
-        buttonPause.setVisibility(View.VISIBLE);
+        buttonContinue.setVisibility(View.GONE);
     }
 
     private void pauseTimer() {
@@ -164,7 +189,11 @@ public class TimerFragment extends Fragment {
         timerRunning = false;
         buttonStart.setText("Start");
         buttonPause.setVisibility(View.GONE);
+        buttonContinue.setVisibility(View.VISIBLE);
         buttonReset.setVisibility(View.VISIBLE);
+    }
+    private void continueTimer() {
+        startCountDown();
     }
 
     private void resetTimer() {
@@ -174,6 +203,7 @@ public class TimerFragment extends Fragment {
         buttonStart.setText("Start");
         buttonReset.setVisibility(View.GONE);
         buttonPause.setVisibility(View.GONE);
+        buttonContinue.setVisibility(View.GONE);
     }
 
     private void updateCountDownText() {
@@ -195,10 +225,40 @@ public class TimerFragment extends Fragment {
         }
 
         TaskTimer task = new TaskTimer(taskName, Long.parseLong(taskTime), 2);
-        taskList.add(task);
-        taskAdapter.notifyDataSetChanged();
-
+//        taskList.add(task);
+//        taskAdapter.notifyDataSetChanged();
+        addTaskToDB(task);
+        loadTasksFromDatabase();
         editTextTaskName.getText().clear();
         editTextTaskTime.getText().clear();
+    }
+    private void loadTasksFromDatabase() {
+        if(taskList != null)
+            taskList.clear();
+        taskList.addAll(getAllTask());
+        taskAdapter.notifyDataSetChanged();
+    }
+
+    private Collection<? extends TaskTimer> getAllTask() {
+        return RecordDatabase.getInstance(getContext()).taskTimerDao().getListTaskTimer();
+    }
+
+    private void addTaskToDB(TaskTimer taskTimer){
+        RecordDatabase.getInstance(getContext()).taskTimerDao().insertTask(taskTimer);
+    }
+
+    private void deleteTask() {
+        // Lấy vị trí task được chọn từ Spinner
+        TaskTimer selectedTaskPosition = (TaskTimer) taskSpinner.getSelectedItem();
+
+        if (taskSpinner.getSelectedItemPosition() == AdapterView.INVALID_POSITION) {
+            Toast.makeText(getContext(), "Please select a task to delete", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Xóa task khỏi danh sách và cập nhật Adapter
+        taskList.remove(selectedTaskPosition);
+        RecordDatabase.getInstance(getContext()).taskTimerDao().deleteTask(selectedTaskPosition);
+        taskAdapter.notifyDataSetChanged();
     }
 }

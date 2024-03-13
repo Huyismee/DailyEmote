@@ -4,13 +4,19 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
+        style="@style/text_color"
         android:title="@string/title_home" />
-
+    <item
+        android:id="@+id/navigation_note_list"
+        android:icon="@drawable/baseline_view_list_24"
+        android:title="@string/title_note_list"
+        style="@style/text_color"
+        />
     <item
         android:id="@+id/navigation_timer"
         android:icon="@drawable/ic_timer_black"
-        android:title="@string/title_timer" />
-
-
+        android:title="@string/title_timer"
+        style="@style/text_color"
+        />
 
 </menu>

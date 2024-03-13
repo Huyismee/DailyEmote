@@ -1,93 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimerFragment">
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <EditText
         android:id="@+id/editTextTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Time"
+        style="@style/text_color"
+        />
+
+
+    <Spinner
+        android:id="@+id/taskSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        style="@style/text_color"
+        android:theme="@style/text_color"
+        android:background="@drawable/mybg"
+
+        />
+
+    <EditText
+        android:id="@+id/editTextTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:hint="Task Name"
+        style="@style/text_color"
+        />
+
+    <EditText
+        android:id="@+id/editTextTaskTime"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:hint="Task Time"
+        style="@style/text_color"
+        />
+
+    <Button
+
+        android:id="@+id/buttonAddTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:inputType="number"
-        android:hint="Enter time in minutes" />
+        android:text="Add Task"
+        style="@style/text_color"
+        android:background="@drawable/button_style"
+        />
+
+    />
 
     <Button
         android:id="@+id/buttonStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start"
-        android:layout_below="@id/editTextTime"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
+        style="@style/text_color"
+        android:background="@drawable/button_style"
+        />
 
     <Button
         android:id="@+id/buttonPause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pause"
-        android:layout_below="@id/buttonStart"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        style="@style/text_color"
+        android:background="@drawable/button_style"/>
+
+    <Button
+        android:id="@+id/buttonContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:visibility="gone"
+        style="@style/text_color"
+        android:background="@drawable/button_style"/>
 
     <Button
         android:id="@+id/buttonReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reset"
-        android:layout_below="@id/buttonPause"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:visibility="gone" />
-
-    <EditText
-        android:id="@+id/editTextTaskName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonReset"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:hint="Enter task name"/>
-
-    <EditText
-        android:id="@+id/editTextTaskTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextTaskName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:inputType="number"
-        android:hint="Enter task time in minutes"/>
+        android:visibility="gone"
+        style="@style/text_color"
+        android:background="@drawable/button_style"/>
 
     <Button
-        android:id="@+id/buttonAddTask"
+        android:id="@+id/buttonDeleteTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Task"
-        android:layout_below="@id/editTextTaskTime"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
-
-    <Spinner
-        android:id="@+id/taskSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonAddTask"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
+        android:text="Delete Task"
+        style="@style/text_color"
+        android:background="@drawable/button_style"/>
 
     <TextView
         android:id="@+id/textViewTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00:00:00"
-        android:textSize="24sp"
-        android:layout_below="@id/taskSpinner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"/>
-</RelativeLayout>
+        android:textSize="48sp"
+        style="@style/text_color"
+        />
+</LinearLayout>

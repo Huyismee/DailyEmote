@@ -2,7 +2,7 @@
     <string name="app_name">DailyEmote</string>
     <string name="title_home">Home</string>
     <string name="title_timer">Timer</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_note_list">Note List</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

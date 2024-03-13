@@ -60,7 +60,9 @@ public class fragment_record extends Fragment {
 
     private void dataInitialize() {
         records = new ArrayList<Record>();
-        records.add(new Record(1, R.drawable.angry, R.drawable.sun, "fuck", null, new Date(19920)));
+        for (int i = 0; i < 10; i++) {
+            records.add(new Record(R.drawable.angry, R.drawable.sun, "fuck", null, new Date(19920)));
+        }
         // điền dữ liệu database vô đây
     }
 }

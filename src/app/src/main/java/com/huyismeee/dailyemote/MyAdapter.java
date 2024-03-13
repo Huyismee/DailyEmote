@@ -63,6 +63,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewholder> {
             byte[] imageData = record.getImage();
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
             holder.imNote.setImageBitmap(bitmap);
+        } else {
+            holder.imNote.setImageResource(R.drawable.broken_image);
         }
 
 

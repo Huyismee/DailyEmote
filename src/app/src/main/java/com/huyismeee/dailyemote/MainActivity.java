@@ -9,10 +9,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.huyismeee.dailyemote.database.RecordDatabase;
 import com.huyismeee.dailyemote.databinding.ActivityMainBinding;
 
 import java.util.Timer;
@@ -50,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         bindingView();
         bindingAction();
-
 
     }
 

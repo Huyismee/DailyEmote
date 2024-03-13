@@ -21,6 +21,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewholder> {
 
     Context context;
     ArrayList<Record> records;
+
     public MyAdapter(Context context, ArrayList<Record> records) {
 
         this.context = context;
@@ -31,31 +32,34 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewholder> {
     @Override
     public MyViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(context).inflate(R.layout.list_item,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
         return new MyViewholder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewholder holder, int position) {
         Record record = records.get(position);
-       String pathEmo  = record.getEmotion();
-        String pathWeather  = record.getWeather();
+        int pathWeather = 0;
+        int pathEmo = 0;
+        if(record.getWeather()>1){
+             pathWeather = record.getWeather();
+        }
+        if(record.getEmotion() >1){
+             pathEmo = record.getEmotion();
+        }
+        if(pathEmo != 0 ){
+            holder.imEmo.setImageResource(pathEmo);
+        } else {
+            holder.imEmo.setImageResource(R.drawable.broken_image);
+        }
+        if(pathWeather != 0){
+            holder.imWheather.setImageResource(pathWeather);
+        }else {
+            holder.imWheather.setImageResource(R.drawable.broken_image);
 
-        File imgFileEmo = new File(pathEmo);
-
-        if(imgFileEmo.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFileEmo.getAbsolutePath());
-            holder.imEmo.setImageBitmap(myBitmap);
         }
 
-        File imgFileWhether = new File(pathWeather);
-
-        if(imgFileWhether.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFileWhether.getAbsolutePath());
-            holder.imWheather.setImageBitmap(myBitmap);
-        }
-
-        if (record.getImage()!=null){
+        if (record.getImage() != null) {
             byte[] imageData = record.getImage();
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
             holder.imNote.setImageBitmap(bitmap);
@@ -65,9 +69,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewholder> {
         holder.txtDay.setText("Day");
 
 
-
-
-
     }
 
     @Override
@@ -75,11 +76,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewholder> {
         return records.size();
     }
 
-    public  static  class MyViewholder extends RecyclerView.ViewHolder{
+    public static class MyViewholder extends RecyclerView.ViewHolder {
 
-        ImageView imEmo,imWheather,imNote;
+        ImageView imEmo, imWheather, imNote;
 
         TextView txtDay;
+
         public MyViewholder(@NonNull View itemView) {
             super(itemView);
 

@@ -3,48 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center_horizontal"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
+
     <EditText
         android:id="@+id/editTextTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Time"
         style="@style/text_color"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:hint="Time"
+        android:background="@color/colorPrimary"
         />
+
 
 
     <Spinner
         android:id="@+id/taskSpinner"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="49dp"
         style="@style/text_color"
         android:theme="@style/text_color"
+        android:padding="10dp"
         android:background="@drawable/mybg"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginTop="30dp"
 
         />
 
     <EditText
         android:id="@+id/editTextTaskName"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:hint="Task Name"
         style="@style/text_color"
-        />
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        android:hint="Task Name" />
 
     <EditText
+        android:layout_marginTop="30dp"
         android:id="@+id/editTextTaskTime"
-        android:layout_width="match_parent"
+        style="@style/text_color"
+        android:background="@color/colorPrimary"
+        android:layout_width="300dp"
         android:layout_height="63dp"
         android:hint="Task Time"
-        style="@style/text_color"
+        android:padding="10dp"
         />
 
     <Button
-
+        android:layout_marginTop="20dp"
         android:id="@+id/buttonAddTask"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Add Task"
         style="@style/text_color"
@@ -54,8 +69,9 @@
     />
 
     <Button
+        android:layout_marginTop="20dp"
         android:id="@+id/buttonStart"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Start"
         style="@style/text_color"
@@ -63,8 +79,9 @@
         />
 
     <Button
+        android:layout_margin="10dp"
         android:id="@+id/buttonPause"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Pause"
         android:visibility="gone"
@@ -72,8 +89,9 @@
         android:background="@drawable/button_style"/>
 
     <Button
+        android:layout_margin="10dp"
         android:id="@+id/buttonContinue"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Continue"
         android:visibility="gone"
@@ -81,8 +99,9 @@
         android:background="@drawable/button_style"/>
 
     <Button
+        android:layout_margin="10dp"
         android:id="@+id/buttonReset"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Reset"
         android:visibility="gone"
@@ -90,14 +109,16 @@
         android:background="@drawable/button_style"/>
 
     <Button
+        android:layout_marginTop="20dp"
         android:id="@+id/buttonDeleteTask"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Delete Task"
         style="@style/text_color"
         android:background="@drawable/button_style"/>
 
     <TextView
+        android:layout_marginTop="30dp"
         android:id="@+id/textViewTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

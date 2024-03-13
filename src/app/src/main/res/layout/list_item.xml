@@ -3,45 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    app:layout_constraintCircleRadius="30dp"
+    >
 
     <ImageView
         android:id="@+id/imEmo"
-        android:layout_width="67dp"
-        android:layout_height="82dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <ImageView
         android:id="@+id/imWheather"
-        android:layout_width="65dp"
-        android:layout_height="83dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toEndOf="@+id/imEmo"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/imNote"
-        android:layout_width="106dp"
-        android:layout_height="76dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imWheather"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/txtDay"
-        android:layout_width="367dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="244dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="@color/colorText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imEmo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

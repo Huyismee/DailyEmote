@@ -3,15 +3,18 @@ package com.huyismeee.dailyemote.database;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
 import java.util.Date;
 
 @Entity(tableName = "Record")
+@TypeConverters(DateConverter.class)
 public class Record {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private String emotion;
-    private String weather;
+    private int emotion;
+    private int weather;
     private String note;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
@@ -20,7 +23,7 @@ public class Record {
     public Record() {
     }
 
-    public Record(int id, String emotion, String weather, String note, byte[] image, Date noteDate) {
+    public Record(int id, int emotion, int weather, String note, byte[] image, Date noteDate) {
         this.id = id;
         this.emotion = emotion;
         this.weather = weather;
@@ -37,19 +40,19 @@ public class Record {
         this.id = id;
     }
 
-    public String getEmotion() {
+    public int getEmotion() {
         return emotion;
     }
 
-    public void setEmotion(String emotion) {
+    public void setEmotion(int emotion) {
         this.emotion = emotion;
     }
 
-    public String getWeather() {
+    public int getWeather() {
         return weather;
     }
 
-    public void setWeather(String weather) {
+    public void setWeather(int weather) {
         this.weather = weather;
     }
 

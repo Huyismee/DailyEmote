@@ -1,19 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient_drawable"
+    android:orientation="vertical"
     tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/navigation_home"
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DBEDEF" />
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello home fragment"
-        style="@style/text_color"
-        />
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_marginTop="10dp"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:hint="How was ur day?"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textStyle="italic"
+                android:gravity="center"
+                android:background="#ECFDFD"
+                android:layout_marginBottom="2.5dp"
+                android:text="EMOTION"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <RadioGroup
+                    android:id="@+id/radioEmotion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/angry"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="25dp"
+                        android:background="@drawable/angry"
+                        android:checked="false"
+                        android:color="#F6F5F5" />
+
+                    <RadioButton
+                        android:id="@+id/happy"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/happy" />
+
+                    <RadioButton
+                        android:id="@+id/sad"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/sad" />
+
+                    <RadioButton
+                        android:id="@+id/confused"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/confused" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textStyle="italic"
+                android:gravity="center"
+                android:background="#ECFDFD"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:text="WEATHER"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <RadioGroup
+                    android:id="@+id/radioWeather"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/cloudy"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="25dp"
+                        android:background="@drawable/cloud" />
+
+                    <RadioButton
+                        android:id="@+id/sunny"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/sun" />
+
+                    <RadioButton
+                        android:id="@+id/rainny"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/raining"  />
+
+                    <RadioButton
+                        android:id="@+id/snowy"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/snow"  />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/shape"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:background="#ECFDFD"
+                    android:padding="5dp"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="5dp" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:srcCompat="@drawable/camera" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:background="#ECFDFD"
+                android:text="Note" />
+        </LinearLayout>
+    </ScrollView>
+<!--    <Button-->
+<!--        android:id="@+id/btnNow"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="#ECFDFD"-->
+<!--        android:text="Today"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textStyle="bold" />-->
 
 
-</FrameLayout>
+</LinearLayout>

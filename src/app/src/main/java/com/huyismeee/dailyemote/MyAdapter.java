@@ -16,13 +16,14 @@ import com.huyismeee.dailyemote.database.Record;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewholder> {
 
     Context context;
-    ArrayList<Record> records;
+    List<Record> records;
 
-    public MyAdapter(Context context, ArrayList<Record> records) {
+    public MyAdapter(Context context, List<Record> records) {
 
         this.context = context;
         this.records = records;

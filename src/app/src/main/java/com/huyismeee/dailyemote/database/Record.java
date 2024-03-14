@@ -23,8 +23,7 @@ public class Record {
     public Record() {
     }
 
-    public Record(int id, int emotion, int weather, String note, byte[] image, Date noteDate) {
-        this.id = id;
+    public Record( int emotion, int weather, String note, byte[] image, Date noteDate) {
         this.emotion = emotion;
         this.weather = weather;
         this.note = note;

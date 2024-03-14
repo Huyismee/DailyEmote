@@ -16,13 +16,14 @@ import com.huyismeee.dailyemote.database.Record;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewholder> {
 
     Context context;
-    ArrayList<Record> records;
+    List<Record> records;
 
-    public MyAdapter(Context context, ArrayList<Record> records) {
+    public MyAdapter(Context context, List<Record> records) {
 
         this.context = context;
         this.records = records;
@@ -63,6 +64,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewholder> {
             byte[] imageData = record.getImage();
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
             holder.imNote.setImageBitmap(bitmap);
+        } else {
+            holder.imNote.setImageResource(R.drawable.broken_image);
         }
 
 

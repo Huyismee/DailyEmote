@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.huyismeee.dailyemote.database.Record;
+import com.huyismeee.dailyemote.database.RecordDatabase;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class fragment_record extends Fragment {
 
@@ -28,7 +30,7 @@ public class fragment_record extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ArrayList<Record> records;
+    private List<Record> records;
     private RecyclerView recylerView;
 
     public fragment_record() {
@@ -60,7 +62,11 @@ public class fragment_record extends Fragment {
 
     private void dataInitialize() {
         records = new ArrayList<Record>();
-        records.add(new Record(1, R.drawable.angry, R.drawable.sun, "fuck", null, new Date(19920)));
+
+
+        Record record = new Record(R.drawable.sad, R.drawable.raining, "fuck", null, new Date(19920));
+        RecordDatabase.getInstance(getContext()).recordDao().insertRecord(record);
+        records = RecordDatabase.getInstance(getContext()).recordDao().getListRecord();
         // điền dữ liệu database vô đây
     }
 }
